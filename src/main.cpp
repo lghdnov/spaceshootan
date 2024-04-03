@@ -1,12 +1,29 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <fstream>
+
+#include "Renderer.h"
+#include "logger.h"
+
+auto file_ = ofstream("logs.txt");
+
+auto log_ = logz::LoggerBuilder::newLogger("MAIN")
+        ->addOut(&std::cout)
+        ->addOut(&file_)
+        ->addStandardModifiers()
+        ->getLogger();
+
 
 int main(){
-    std::cout << "hello world";
 
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SPACE SHOOTAN!");
+    log_->info("Staring application...");
 
-    window.clear(sf::Color::White);
-    window.display();
+    World world;
+    world.addSystem<Renderer>();
 
+    world.init();
+
+    while (true){
+        world.update();
+    }
 }
