@@ -13,10 +13,6 @@ namespace logz{
         ERROR, INFO, DEBUG
     };
 
-    char err_str[] = "[ERROR]";
-    char inf_str[] = "[INFO]";
-    char dbg_str[] = "[DEBUG]";
-
     class ILogModifier{
     public:
         virtual void init(const string& title, LoggerSens sens) = 0;
@@ -32,13 +28,13 @@ namespace logz{
         }
 
         void apply(const string& message, ostream& output, LoggerSens messageSens) override {
-            output << title << ": ";
+            output << "[" << title << "] : ";
         }
     };
 
     class SensModifier : public ILogModifier {
     public:
-
+        static char err_str[], inf_str[], dbg_str[];
         void init(const string& title, LoggerSens sens) override {}
 
         void apply(const string& message, ostream& output, LoggerSens messageSens) override {
@@ -50,6 +46,9 @@ namespace logz{
             output << " ";
         }
     };
+    inline char SensModifier::err_str[] = "[ERROR]";
+    inline char SensModifier::inf_str[] = "[INFO]";
+    inline char SensModifier::dbg_str[] = "[DEBUG]";
 
     class TimeModifier : public ILogModifier {
     public:

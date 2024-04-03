@@ -1,11 +1,20 @@
 #include "Renderer.h"
 
+
+static auto file = ofstream("logs.txt");
+
+static auto log = logz::LoggerBuilder::newLogger("RENDERER")
+        ->addOut(&std::cout)
+        ->addOut(&file)
+        ->addStandardModifiers()
+        ->getLogger();
+
 Renderer::Renderer():
 window(sf::VideoMode(200, 200), "SPACE SHOOTAN!")
 {}
 
 void Renderer::init(World *pWorld) {
-    cout << "Rendering system initialization" << endl;
+    log->debug("Rendering system initialization");
 }
 
 void Renderer::update(float dt) {

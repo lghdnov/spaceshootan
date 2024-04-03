@@ -3,20 +3,19 @@
 #include <fstream>
 
 #include "Renderer.h"
-#include "logger.h"
 
-auto file_ = ofstream("logs.txt");
+static auto file = ofstream("logs.txt");
 
-auto log_ = logz::LoggerBuilder::newLogger("MAIN")
+static auto log = logz::LoggerBuilder::newLogger("MAIN")
         ->addOut(&std::cout)
-        ->addOut(&file_)
+        ->addOut(&file)
         ->addStandardModifiers()
         ->getLogger();
 
 
 int main(){
 
-    log_->info("Staring application...");
+    log->info("Staring application...");
 
     World world;
     world.addSystem<Renderer>();

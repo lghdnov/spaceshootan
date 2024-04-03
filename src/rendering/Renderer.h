@@ -5,10 +5,10 @@
 #include "ecs.h"
 #include "fstream"
 #include "SFML/Graphics.hpp"
+#include "logger.h"
 
 class Renderer : public System{
 private:
-
     sf::RenderWindow window;
 public:
     Renderer();
