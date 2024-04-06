@@ -4,16 +4,19 @@
 
 #include "Renderer.h"
 
-static auto file = ofstream("logs.txt");
-
-static auto log = logz::LoggerBuilder::newLogger("MAIN")
-        ->addOut(&std::cout)
-        ->addOut(&file)
-        ->addStandardModifiers()
-        ->getLogger();
+//static auto log = logz::LoggerBuilder::newLogger("MAIN")
+//        ->addOut(&std::cout)
+//        ->addOut(&file)
+//        ->getLogger();
 
 
 int main(){
+    auto file = ofstream("logs.txt", std::ios::out | std::ios::app);
+    logz::Logger::addGlobalOut(&file);
+    logz::Logger::addGlobalOut(&std::cout);
+
+    auto log = logz::LoggerBuilder::newLogger("MAIN")
+            ->getLogger();
 
     log->info("Staring application...");
 

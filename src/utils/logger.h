@@ -19,6 +19,8 @@ namespace logz{
         virtual void apply(const string& message, ostream& output, LoggerSens sens) = 0;
     };
 
+    static vector<ostream*> global_outs;
+
     class TitleModifier : public ILogModifier {
     public:
         std::string title;
@@ -97,6 +99,10 @@ namespace logz{
             outputs.push_back(ostream_);
         }
 
+        static void addGlobalOut(ostream* ostream_){
+            global_outs.push_back(ostream_);
+        }
+
         vector<ILogModifier*>& getModifiers(){
             return modifiers;
         }
@@ -166,6 +172,13 @@ namespace logz{
         }
 
         Logger* getLogger(){
+            if (logger->getModifiers().empty())
+                addStandardModifiers();
+
+            for (const auto &out: global_outs){
+                logger->add(out);
+            }
+
             return logger;
         }
     };

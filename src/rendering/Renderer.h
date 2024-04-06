@@ -10,6 +10,8 @@
 class Renderer : public System{
 private:
     sf::RenderWindow window;
+    logz::Logger* log = logz::LoggerBuilder::newLogger("RENDERER")
+            ->getLogger();
 public:
     Renderer();
 
