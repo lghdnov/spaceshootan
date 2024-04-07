@@ -72,7 +72,7 @@ public:
         }
     }
 
-    const vector<shared_ptr<Entity>> &getEntities() const {
+    vector<shared_ptr<Entity>> &getEntities(){
         return entities;
     }
 };

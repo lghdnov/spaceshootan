@@ -1,7 +1,7 @@
 #include "Renderer.h"
 
 Renderer::Renderer():
-window(sf::VideoMode(200, 200), "SPACE SHOOTAN!")
+window(sf::VideoMode(1000, 1000), "SPACE SHOOTAN!")
 {}
 
 void Renderer::init(World *pWorld) {

@@ -2,6 +2,7 @@ include_directories(.)
 include_directories(rendering)
 include_directories(components)
 include_directories(playerlogic)
+include_directories(garbage)
 
 add_executable(spaceshootan main.cpp
         utils/ecs.h
@@ -13,6 +14,10 @@ add_executable(spaceshootan main.cpp
         utils/impl.h
         components/PhysicalObject.h
         components/GraphicObject.h
+        components/LocalPlayer.h
+        components/GarbageMark.h
+        garbage/GarbageCleaner.cpp
+        garbage/GarbageCleaner.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)

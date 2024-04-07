@@ -5,6 +5,8 @@
 
 #include "GraphicObject.h"
 #include "PhysicalObject.h"
+#include "LocalPlayer.h"
+#include "GarbageMark.h"
 
 class PlayerController : public System{
 private:

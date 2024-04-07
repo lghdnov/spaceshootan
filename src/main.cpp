@@ -3,6 +3,7 @@
 
 #include "Renderer.h"
 #include "PlayerController.h"
+#include "GarbageCleaner.h"
 
 using namespace std;
 using namespace logz;
@@ -20,6 +21,7 @@ int main(){
     World world;
     world.addSystem<Renderer>();
     world.addSystem<PlayerController>();
+    world.addSystem<GarbageCleaner>();
 
     world.init();
 
