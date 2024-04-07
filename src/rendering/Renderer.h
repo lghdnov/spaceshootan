@@ -2,14 +2,15 @@
 #ifndef SPACESHOOTAN_RENDERER_H
 #define SPACESHOOTAN_RENDERER_H
 
-#include "ecs.h"
 #include "fstream"
 #include "SFML/Graphics.hpp"
-#include "logger.h"
+#include "utils/impl.h"
+#include "GraphicObject.h"
 
 class Renderer : public System{
 private:
     sf::RenderWindow window;
+    World* world = nullptr;
     logz::Logger* log = logz::LoggerBuilder::newLogger("RENDERER")
             ->getLogger();
 public:

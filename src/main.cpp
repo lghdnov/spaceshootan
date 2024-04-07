@@ -1,27 +1,25 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <fstream>
 
 #include "Renderer.h"
+#include "PlayerController.h"
 
-//static auto log = logz::LoggerBuilder::newLogger("MAIN")
-//        ->addOut(&std::cout)
-//        ->addOut(&file)
-//        ->getLogger();
-
+using namespace std;
+using namespace logz;
 
 int main(){
-    auto file = ofstream("logs.txt", std::ios::out | std::ios::app);
-    logz::Logger::addGlobalOut(&file);
-    logz::Logger::addGlobalOut(&std::cout);
+    auto file = ofstream("logs.txt", ios::out | ios::app);
+    Logger::addGlobalOut(&file);
+    Logger::addGlobalOut(&cout);
 
-    auto log = logz::LoggerBuilder::newLogger("MAIN")
+    auto log = LoggerBuilder::newLogger("MAIN")
             ->getLogger();
 
     log->info("Staring application...");
 
     World world;
     world.addSystem<Renderer>();
+    world.addSystem<PlayerController>();
 
     world.init();
 
