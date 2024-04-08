@@ -43,7 +43,7 @@ void PlayerController::update(float dt) {
         float dy = (float)mouse_pos.y - physic_object->object->getPosition().y;
         float current_rotation = physic_object->object->getRotation();
 
-        float target_rotation = atan2(dx, dy) * (180 / M_PI) * -1 + 180;
+        float target_rotation = atan2(dx, dy) * (180 / (float)M_PI) * -1 + 180;
         float rotation_velocity;
 
 
@@ -61,10 +61,10 @@ void PlayerController::update(float dt) {
 
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
-            double move_angle = (current_rotation - 90) / (180 / M_PI);
+            float move_angle = (current_rotation - 90) / (180 / (float)M_PI);
 
-            pos_vel->x_vel += (float)cos(move_angle) * 0.3;
-            pos_vel->y_vel += (float)sin(move_angle) * 0.3;
+            pos_vel->x_vel += (float)(cos(move_angle) * 0.3);
+            pos_vel->y_vel += (float)(sin(move_angle) * 0.3);
         }
     }
 }
