@@ -3,6 +3,7 @@ include_directories(rendering)
 include_directories(components)
 include_directories(playerlogic)
 include_directories(garbage)
+include_directories(physics)
 
 add_executable(spaceshootan main.cpp
         utils/ecs.h
@@ -18,6 +19,11 @@ add_executable(spaceshootan main.cpp
         components/GarbageMark.h
         garbage/GarbageCleaner.cpp
         garbage/GarbageCleaner.h
+        components/Window.h
+        components/RotationVelocity.h
+        components/PositionVelocity.h
+        physics/VelocitySystem.cpp
+        physics/VelocitySystem.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)

@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "PlayerController.h"
 #include "GarbageCleaner.h"
+#include "VelocitySystem.h"
 
 using namespace std;
 using namespace logz;
@@ -19,8 +20,10 @@ int main(){
     log->info("Staring application...");
 
     World world;
-    world.addSystem<Renderer>();
     world.addSystem<PlayerController>();
+    world.addSystem<VelocitySystem>();
+    world.addSystem<Renderer>();
+
     world.addSystem<GarbageCleaner>();
 
     world.init();

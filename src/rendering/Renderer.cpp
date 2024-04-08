@@ -8,6 +8,10 @@ void Renderer::init(World *pWorld) {
     log->debug("Rendering system initialization");
     window.setVerticalSyncEnabled(true);
     world = pWorld;
+
+    auto window_ent = world->createEntity();
+
+    window_ent->addComponent(make_shared<WindowC>(window));
 }
 
 void Renderer::update(float dt) {

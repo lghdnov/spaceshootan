@@ -6,6 +6,7 @@
 #include "SFML/Graphics.hpp"
 #include "utils/impl.h"
 #include "GraphicObject.h"
+#include "Window.h"
 
 class Renderer : public System{
 private:
