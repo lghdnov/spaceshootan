@@ -1,4 +1,4 @@
-#include "Netw.h"
+#include "Networking.h"
 
 using namespace networking;
 
@@ -13,6 +13,7 @@ sf::Socket::Status NetClient::init() {
 }
 
 void NetClient::send(sf::Packet packet) {
+    packet << sf::Int16(id);
     connection.send(packet);
 }
 
@@ -21,4 +22,8 @@ std::optional<sf::Packet> NetClient::receive() {
     return (connection.receive(packet) == sf::Socket::Done) ?
         std::optional<sf::Packet>(std::move(packet)) :
         std::nullopt;
+}
+
+void NetClient::setId(int id) {
+    this->id = id;
 }

@@ -6,7 +6,7 @@
 
 class Packet : public Component{
 public:
-    Packet() = default;
+    explicit Packet(const sf::Packet& packet_): packet(packet_){}
     sf::Packet packet;
 };
 

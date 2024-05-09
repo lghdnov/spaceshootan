@@ -25,9 +25,7 @@ add_executable(spaceshootan main.cpp
         components/PositionVelocity.h
         physics/VelocitySystem.cpp
         physics/VelocitySystem.h
-        networking/Networking.cpp
         networking/Networking.h
-        networking/Netw.h
         networking/NetSystem.cpp
         networking/NetSystem.h
         components/Packet.h
@@ -35,6 +33,9 @@ add_executable(spaceshootan main.cpp
         networking/packet/Connection.h
         networking/NetServer.cpp
         networking/NetClient.cpp
+        networking/packet/SetId.cpp
+        networking/packet/SetId.h
+        components/NetworkingC.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)
