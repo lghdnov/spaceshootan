@@ -4,6 +4,7 @@ include_directories(components)
 include_directories(playerlogic)
 include_directories(garbage)
 include_directories(physics)
+include_directories(networking)
 
 add_executable(spaceshootan main.cpp
         utils/ecs.h
@@ -24,6 +25,17 @@ add_executable(spaceshootan main.cpp
         components/PositionVelocity.h
         physics/VelocitySystem.cpp
         physics/VelocitySystem.h
+        networking/Networking.cpp
+        networking/Networking.h
+        networking/Netw.h
+        networking/NetSystem.cpp
+        networking/NetSystem.h
+        components/Packet.h
+        networking/packet/Connection.cpp
+        networking/packet/Connection.h
+        networking/NetServer.cpp
+        networking/NetClient.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-network)

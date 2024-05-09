@@ -16,6 +16,12 @@ void Renderer::init(World *pWorld) {
 
 void Renderer::update(float dt) {
     if (window.isOpen()) {
+
+        sf::Event event{};
+        while (window.pollEvent(event)){
+
+        }
+
         window.clear(sf::Color::White);
 
         for (const auto &item: world->getEntities()){

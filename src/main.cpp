@@ -5,6 +5,7 @@
 #include "PlayerController.h"
 #include "GarbageCleaner.h"
 #include "VelocitySystem.h"
+#include "NetSystem.h"
 
 using namespace std;
 using namespace logz;
@@ -23,10 +24,9 @@ int main(){
     world.addSystem<PlayerController>();
     world.addSystem<VelocitySystem>();
     world.addSystem<Renderer>();
+    world.addSystem<NetSystem>();
 
     world.addSystem<GarbageCleaner>();
-
-    world.init();
 
     while (true){
         world.update();

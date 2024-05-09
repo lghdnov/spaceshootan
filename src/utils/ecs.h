@@ -57,14 +57,11 @@ public:
     void addSystem(){
         static_assert(is_base_of<System, T>::value, "T must be a subclass of System");
 
-        systems.push_back(make_shared<T>());
+        auto system = make_shared<T>();
+        systems.push_back(system);
+        systems.back()->init(this);
     }
 
-    void init(){
-        for (const auto &system: systems){
-            system->init(this);
-        }
-    }
 
     void update(){
         for (const auto &system: systems){
