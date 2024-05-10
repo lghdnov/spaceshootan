@@ -19,7 +19,14 @@ void Renderer::update(float dt) {
 
         sf::Event event{};
         while (window.pollEvent(event)){
+            switch (event.type) {
 
+                case sf::Event::Closed:
+                    exit(EXIT_SUCCESS);
+                    break;
+                case sf::Event::Resized:
+                    break;
+            }
         }
 
         window.clear(sf::Color::White);

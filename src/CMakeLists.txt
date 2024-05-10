@@ -36,6 +36,10 @@ add_executable(spaceshootan main.cpp
         networking/packet/SetId.cpp
         networking/packet/SetId.h
         components/NetworkingC.h
+        networking/packet/Position.cpp
+        networking/packet/Position.h
+        components/RemotePlayer.h
+        components/Id.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)

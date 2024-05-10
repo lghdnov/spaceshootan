@@ -56,11 +56,12 @@ void PlayerController::update(float dt) {
         if (current_rotation - target_rotation > 180) rotation_velocity = 4;
         if (target_rotation - current_rotation > 180) rotation_velocity = -4;
 
-        rot_vel->velocity = rotation_velocity;
+        if (window_c->window.hasFocus())
+            rot_vel->velocity = rotation_velocity;
 
 
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && window_c->window.hasFocus()){
             float move_angle = (current_rotation - 90) / (180 / (float)M_PI);
 
             pos_vel->x_vel += (float)(cos(move_angle) * 0.3);

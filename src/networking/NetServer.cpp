@@ -1,5 +1,5 @@
 #include "Networking.h"
-#include "SFML/System/String.hpp"
+#include "iostream"
 
 using namespace networking;
 using namespace std;
@@ -63,3 +63,7 @@ std::optional<sf::Packet> NetServer::receive() {
 }
 
 void NetServer::setId(int) {}
+
+NetServer::~NetServer() {
+    std::cout << "destro" << std::endl;
+}

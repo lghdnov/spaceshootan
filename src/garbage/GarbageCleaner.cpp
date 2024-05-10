@@ -25,9 +25,9 @@ void GarbageCleaner::update(float dt) {
             remove_counter++;
         }
     }
-    if (remove_counter > 0){
-        stringstream log_str;
-        log_str << "Garbage cleaner removed " << remove_counter << " entities on this frame";
-        log->debug(log_str.str());
-    }
+//    if (remove_counter > 0){
+//        stringstream log_str;
+//        log_str << "Garbage cleaner removed " << remove_counter << " entities on this frame";
+//        log->debug(log_str.str());
+//    }
 }

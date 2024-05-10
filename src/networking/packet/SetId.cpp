@@ -9,11 +9,11 @@ void SetId::init(World *world) {
 
 void SetId::update(float dt) {
 
-    shared_ptr<NetworkingC> networking;
+    shared_ptr<NetworkingC> networkingC;
 
     for (const auto &item: world->getEntities()){
         auto _networking = item->getComponent<NetworkingC>();
-        if (_networking) networking = _networking;
+        if (_networking) networkingC = _networking;
     }
 
     for (const auto &item: world->getEntities()) {
@@ -30,11 +30,11 @@ void SetId::update(float dt) {
         sf::Int32 id;
         packet >> id;
 
-        networking->worker->setId(id);
+        networkingC->networking.worker->setId(id);
 
         sf::Packet connection_packet;
         sf::String connection_header = "connect";
         connection_packet << connection_header;
-        networking->worker->send(connection_packet);
+        networkingC->networking.worker->send(connection_packet);
     }
 }

@@ -7,6 +7,7 @@
 #include "GarbageMark.h"
 #include "packet/SetId.h"
 #include "NetworkingC.h"
+#include "packet/Position.h"
 
 class NetSystem : public System{
 private:

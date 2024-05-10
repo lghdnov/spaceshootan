@@ -9,6 +9,7 @@
 #include "SFML/Network/Packet.hpp"
 #include "SFML/Network/TcpListener.hpp"
 #include "SFML/Network/TcpSocket.hpp"
+#include "SFML/System/String.hpp"
 
 namespace networking{
 
@@ -29,6 +30,7 @@ namespace networking{
         sf::TcpSocket* last_connection;
     public:
         NetServer(int port, sf::IpAddress adr);
+        ~NetServer();
         sf::Socket::Status init() override;
         void send(sf::Packet) override;
         std::optional<sf::Packet> receive() override;
@@ -49,16 +51,20 @@ namespace networking{
         void setId(int) override;
     };
 
-    static INetWorker* currentWorker = nullptr;
+    class Networking{
+    public:
+        INetWorker* worker = nullptr;
 
-    template<typename T>
-    typename std::enable_if<std::is_base_of<INetWorker, T>::value, sf::Socket::Status>::type
-    createWorker(int port, sf::IpAddress adr){
-        delete currentWorker;
+        template<typename T>
+        typename std::enable_if<std::is_base_of<INetWorker, T>::value, sf::Socket::Status>::type
+        createWorker(int port, sf::IpAddress adr){
+            delete worker;
 
-        currentWorker = new T(port, adr);
-        return currentWorker->init();
-    }
+            worker = new T(port, adr);
+            return worker->init();
+        }
+    };
+
 }
 
 

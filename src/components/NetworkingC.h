@@ -9,8 +9,8 @@ using namespace networking;
 
 class NetworkingC : public Component{
 public:
-    explicit NetworkingC(INetWorker* worker_): worker(worker_) {}
-    INetWorker* worker;
+    explicit NetworkingC(Networking _networking): networking(_networking) {}
+    Networking networking ;
 };
 
 #endif //SPACESHOOTAN_NETWORKINGC_H
