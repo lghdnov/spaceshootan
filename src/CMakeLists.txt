@@ -5,6 +5,7 @@ include_directories(playerlogic)
 include_directories(garbage)
 include_directories(physics)
 include_directories(networking)
+include_directories(level)
 
 add_executable(spaceshootan main.cpp
         utils/ecs.h
@@ -40,6 +41,11 @@ add_executable(spaceshootan main.cpp
         networking/packet/Position.h
         components/RemotePlayer.h
         components/Id.h
+        level/LevelGenerator.cpp
+        level/LevelGenerator.h
+        physics/GravitationSystem.cpp
+        physics/GravitationSystem.h
+        components/Mass.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)

@@ -13,13 +13,14 @@ void PlayerController::init(World* world) {
     playerShape->setPoint(0, sf::Vector2f(0, -40));
     playerShape->setPoint(1, sf::Vector2f(20, 20));
     playerShape->setPoint(2, sf::Vector2f (-20, 20));
-    playerShape->setPosition(500, 500);
+    playerShape->setPosition(300, 500);
 
     player->addComponent(make_shared<GraphicObject>(playerShape));
     player->addComponent(make_shared<PhysicalObject>(playerShape));
     player->addComponent(make_shared<LocalPlayer>());
     player->addComponent(make_shared<RotationVelocity>(0));
     player->addComponent(make_shared<PositionVelocity>(0 ,0));
+    player->addComponent(make_shared<Mass>(0.0001));
 
 }
 

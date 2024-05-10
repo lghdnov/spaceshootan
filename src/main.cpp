@@ -6,6 +6,9 @@
 #include "GarbageCleaner.h"
 #include "VelocitySystem.h"
 #include "NetSystem.h"
+#include "LevelGenerator.h"
+#include "GravitationSystem.h"
+
 
 using namespace std;
 using namespace logz;
@@ -21,7 +24,9 @@ int main(){
     log->info("Staring application...");
 
     World world;
+    world.addSystem<LevelGenerator>();
     world.addSystem<PlayerController>();
+    world.addSystem<GravitationSystem>();
     world.addSystem<VelocitySystem>();
     world.addSystem<Renderer>();
     world.addSystem<NetSystem>();

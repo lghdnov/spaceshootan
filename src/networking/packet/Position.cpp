@@ -20,7 +20,6 @@ void Position::update(float dt) {
     }
 
     static bool is_first_frame = true;
-    static sf::Vector2f prev_position_vel;
     static float prev_rotation_vel;
 
     for (const auto &item: world->getEntities()){
@@ -33,13 +32,11 @@ void Position::update(float dt) {
 
         if (is_first_frame){
             is_first_frame = false;
-            prev_position_vel = sf::Vector2f(position_vel->x_vel, position_vel->y_vel);
             prev_rotation_vel = rotation_vel->velocity;
             break;
         }
 
-        if (prev_position_vel.x != position_vel->x_vel ||
-            prev_position_vel.y != position_vel->y_vel ||
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) ||
             prev_rotation_vel != rotation_vel->velocity)
         {
             sf::Packet packet;
@@ -107,6 +104,7 @@ void Position::update(float dt) {
         new_player->addComponent(make_shared<PositionVelocity>(velocity.x, velocity.y));
         new_player->addComponent(make_shared<RotationVelocity>(rotation_v));
         new_player->addComponent(make_shared<Id>(id));
+        new_player->addComponent(make_shared<Mass>(100));
 
     }
 }

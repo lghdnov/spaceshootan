@@ -15,6 +15,7 @@
 #include "Id.h"
 #include "GraphicObject.h"
 #include "NetworkingC.h"
+#include "Mass.h"
 
 class Position : public System{
 private:
