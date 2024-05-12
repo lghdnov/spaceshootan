@@ -11,14 +11,11 @@ void NetSystem::init(World *world) {
     auto networking_entity = world->createEntity();
     networking_entity->addComponent(networkingC);
 
-    sf::Socket::Status conn_res = networkingC->networking.createWorker<networking::NetClient>(17302, "127.0.0.1");
 
-    if (conn_res != sf::Socket::Done){
-        log->info("Unable find the local server. New server will start on port 17302");
-        networkingC->networking.createWorker<networking::NetServer>(17302, "127.0.0.1");
-    } else {
-        world->addSystem<SetId>();
-    }
+    log->info("New server will start on port 17302");
+    networkingC->networking.createWorker<networking::NetServer>(17302, "127.0.0.1");
+
+    world->addSystem<SetId>();
     world->addSystem<Connection>();
     world->addSystem<Position>();
 

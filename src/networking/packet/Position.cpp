@@ -90,6 +90,8 @@ void Position::update(float dt) {
 
         auto player_shape = make_shared<sf::ConvexShape>();
         player_shape->setFillColor(sf::Color::Black);
+        player_shape->setOutlineColor(sf::Color(150, 10, 0));
+        player_shape->setOutlineThickness(2);
         player_shape->setPointCount(3);
         player_shape->setPoint(0, sf::Vector2f(0, -40));
         player_shape->setPoint(1, sf::Vector2f(20, 20));

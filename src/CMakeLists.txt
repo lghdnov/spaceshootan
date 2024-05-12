@@ -46,6 +46,9 @@ add_executable(spaceshootan main.cpp
         physics/GravitationSystem.cpp
         physics/GravitationSystem.h
         components/Mass.h
+        rendering/Gui/ConnectionMenu.cpp
+        rendering/Gui/ConnectionMenu.h
+        components/RenderMethod.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)

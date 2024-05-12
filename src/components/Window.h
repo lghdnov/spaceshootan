@@ -10,8 +10,8 @@
 
 class WindowC : public Component{
 public:
-    sf::Window& window;
-    explicit WindowC(sf::Window& _window) : window(_window) {}
+    sf::RenderWindow& window;
+    explicit WindowC(sf::RenderWindow& _window) : window(_window) {}
 };
 
 #endif //SPACESHOOTAN_WINDOW_H

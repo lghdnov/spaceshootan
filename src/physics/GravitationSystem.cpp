@@ -12,7 +12,7 @@ sf::Vector2f calculateGravitationalForce(const sf::Vector2f& position1, float ma
     sf::Vector2f direction = position2 - position1;
     float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
     //float magnitude = G * mass1 * mass2 / (distance * distance);
-    float magnitude = mass1 * mass2 * 0.05;
+    float magnitude = mass2 * 0.000001;
     direction /= distance;
     return direction * magnitude;
 }
@@ -46,6 +46,7 @@ void GravitationSystem::update(float dt) {
         for (const auto &other_obj: gravity_objects) {
             if (&obj == &other_obj) continue;
 
+            auto &otherVelocity = *(other_obj.velocity);
             auto &other_object = *(other_obj.object);
             auto &otherMass = *(other_obj.mass);
 

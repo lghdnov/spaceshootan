@@ -7,6 +7,11 @@
 #include "utils/impl.h"
 #include "GraphicObject.h"
 #include "Window.h"
+#include "RenderMethod.h"
+#include "imgui-SFML.h"
+#include "imgui.h"
+
+#include "Gui/ConnectionMenu.h"
 
 class Renderer : public System{
 private:

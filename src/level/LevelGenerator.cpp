@@ -9,6 +9,8 @@ void LevelGenerator::init(World *world) {
 
     auto star = make_shared<sf::CircleShape>();
     star->setFillColor(sf::Color::Black);
+    star->setOutlineColor(sf::Color(80, 10 ,0));
+    star->setOutlineThickness(8);
     star->setRadius(150);
     star->setOrigin(star->getRadius(), star->getRadius());
     star->setPosition(500, 500);
@@ -18,7 +20,7 @@ void LevelGenerator::init(World *world) {
     star_entity->addComponent(make_shared<GraphicObject>(star));
     star_entity->addComponent(make_shared<PositionVelocity>(0, 0));
     star_entity->addComponent(make_shared<RotationVelocity>(0));
-    star_entity->addComponent(make_shared<Mass>(5));
+    star_entity->addComponent(make_shared<Mass>(100000));
 }
 
 void LevelGenerator::update(float dt) {}

@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
 
-#include "Renderer.h"
-#include "PlayerController.h"
-#include "GarbageCleaner.h"
-#include "VelocitySystem.h"
-#include "NetSystem.h"
-#include "LevelGenerator.h"
-#include "GravitationSystem.h"
+#include "rendering/Renderer.h"
+#include "playerlogic/PlayerController.h"
+#include "garbage/GarbageCleaner.h"
+#include "physics/VelocitySystem.h"
+#include "networking/NetSystem.h"
+#include "level/LevelGenerator.h"
+#include "physics/GravitationSystem.h"
+
 
 
 using namespace std;

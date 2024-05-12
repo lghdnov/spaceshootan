@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <vector>
 #include <memory>
+#include <chrono>
 
 using namespace std;
 
@@ -64,8 +65,22 @@ public:
 
 
     void update(){
-        for (const auto &system: systems){
-            system->update(1);
+
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        static auto previousTime = currentTime; // Статическая переменная для хранения предыдущего времени
+
+        // Вычисляем разницу между текущим и предыдущим временем
+        std::chrono::duration<float> deltaTime = currentTime - previousTime;
+
+        // Обновляем предыдущее время до текущего для следующего вызова
+        previousTime = currentTime;
+
+        // Преобразуем deltaTime в секунды с плавающей точкой
+        float deltaTimeSeconds = deltaTime.count();
+
+        // Обновляем каждую систему, передавая deltaTime
+        for (const auto& system : systems) {
+            system->update(deltaTimeSeconds);
         }
     }
 

@@ -1,5 +1,7 @@
 #include "VelocitySystem.h"
 
+const float SPEED_DEL = 60;
+
 VelocitySystem::VelocitySystem() = default;
 
 void VelocitySystem::init(World *world) {
@@ -8,6 +10,7 @@ void VelocitySystem::init(World *world) {
 }
 
 void VelocitySystem::update(float dt) {
+    dt *= SPEED_DEL;
     processRotations(dt);
     processMovements(dt);
 }
@@ -18,7 +21,7 @@ void VelocitySystem::processMovements(float dt) {
         auto vel = item->getComponent<PositionVelocity>();
         if (!object || !vel) continue;
 
-        object->object->move(vel->x_vel, vel->y_vel);
+        object->object->move(vel->x_vel * dt, vel->y_vel * dt);
     }
 }
 
@@ -28,7 +31,7 @@ void VelocitySystem::processRotations(float dt) {
         auto vel = item->getComponent<RotationVelocity>();
         if (!object || !vel) continue;
 
-        object->object->rotate(vel->velocity);
+        object->object->rotate(vel->velocity * dt);
     }
 
 }
