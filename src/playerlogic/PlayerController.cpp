@@ -1,10 +1,6 @@
 #include "PlayerController.h"
 
-PlayerController::PlayerController() = default;
-
-void PlayerController::init(World* world) {
-    log->debug("Player controller initialization");
-    this->world = world;
+void create_player(World* world){
     auto player = world->createEntity();
 
     auto playerShape = make_shared<sf::ConvexShape>();
@@ -23,10 +19,21 @@ void PlayerController::init(World* world) {
     player->addComponent(make_shared<RotationVelocity>(0));
     player->addComponent(make_shared<PositionVelocity>(0 ,5.6));
     player->addComponent(make_shared<Mass>(1));
+    player->addComponent(make_shared<Health>(100));
+}
 
+PlayerController::PlayerController() = default;
+
+void PlayerController::init(World* world) {
+    log->debug("Player controller initialization");
+    this->world = world;
+    auto player = world->createEntity();
+
+    create_player(world);
 }
 
 void PlayerController::update(float dt) {
+    bool is_player_detected = false;
     shared_ptr<WindowC> window_c = nullptr;
     for (const auto &item: world->getEntities()){
         window_c = item->getComponent<WindowC>();
@@ -39,11 +46,16 @@ void PlayerController::update(float dt) {
         auto pos_vel = item->getComponent<PositionVelocity>();
         auto rot_vel = item->getComponent<RotationVelocity>();
         if (!physic_object || !player || !pos_vel || !rot_vel) continue;
+        is_player_detected = true;
 
         sf::Vector2<int> mouse_pos = sf::Mouse::getPosition(window_c->window);
 
-        float dx = (float)mouse_pos.x - physic_object->object->getPosition().x;
-        float dy = (float)mouse_pos.y - physic_object->object->getPosition().y;
+        sf::View view = window_c->window.getView();
+
+        sf::Vector2f mouse_world_pos = window_c->window.mapPixelToCoords(mouse_pos, view);
+
+        float dx = mouse_world_pos.x - physic_object->object->getPosition().x;
+        float dy = mouse_world_pos.y - physic_object->object->getPosition().y;
         float current_rotation = physic_object->object->getRotation();
 
         float target_rotation = atan2(dx, dy) * (180 / (float)M_PI) * -1 + 180;
@@ -69,6 +81,49 @@ void PlayerController::update(float dt) {
 
             pos_vel->x_vel += (float)(cos(move_angle) * 0.3);
             pos_vel->y_vel += (float)(sin(move_angle) * 0.3);
+        }
+
+        for (const auto &item: world->getEntities()){
+            auto event = item->getComponent<WindowEvent>();
+            if (!event) continue;
+
+            if (event->event.type != sf::Event::MouseButtonPressed || event->event.mouseButton.button != sf::Mouse::Left)
+                continue;
+
+            float shoot_angle = (current_rotation - 90) / (180 / (float)M_PI);
+            float shoot_distance = 90.f;
+
+            sf::Vector2f bullet_position = physic_object->object->getPosition();
+            bullet_position.x += shoot_distance * cos(shoot_angle);
+            bullet_position.y += shoot_distance * sin(shoot_angle);
+
+            auto bullet_object = make_shared<sf::CircleShape>();
+            bullet_object->setFillColor(sf::Color(80, 10 ,0));
+            bullet_object->setRadius(10);
+            bullet_object->setOrigin(bullet_object->getRadius(), bullet_object->getRadius());
+            bullet_object->setPosition(bullet_position);
+
+            auto bullet_pos_vel = make_shared<PositionVelocity>(pos_vel->x_vel, pos_vel->y_vel);
+            bullet_pos_vel->x_vel += (float)(cos(shoot_angle) * 10);
+            bullet_pos_vel->y_vel += (float)(sin(shoot_angle) * 10);
+
+            auto bullet = world->createEntity();
+            bullet->addComponent(make_shared<PhysicalObject>(bullet_object));
+            bullet->addComponent(make_shared<GraphicObject>(bullet_object));
+            bullet->addComponent(make_shared<Mass>(1));
+            bullet->addComponent(make_shared<Health>(20));
+            bullet->addComponent(bullet_pos_vel);
+
+        }
+
+    }
+
+    static float respawn_time = 0;
+    if (!is_player_detected){
+        respawn_time += dt;
+        if (respawn_time >= 3){
+            create_player(world);
+            respawn_time = 0;
         }
     }
 }

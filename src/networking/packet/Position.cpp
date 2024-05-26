@@ -107,6 +107,7 @@ void Position::update(float dt) {
         new_player->addComponent(make_shared<RotationVelocity>(rotation_v));
         new_player->addComponent(make_shared<Id>(id));
         new_player->addComponent(make_shared<Mass>(100));
+        new_player->addComponent(make_shared<Health>(100));
 
     }
 }

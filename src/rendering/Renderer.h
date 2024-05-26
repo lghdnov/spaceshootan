@@ -8,6 +8,8 @@
 #include "GraphicObject.h"
 #include "Window.h"
 #include "RenderMethod.h"
+#include "WindowEvent.h"
+#include "GarbageMark.h"
 #include "imgui-SFML.h"
 #include "imgui.h"
 

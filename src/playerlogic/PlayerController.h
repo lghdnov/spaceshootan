@@ -12,6 +12,8 @@
 #include "PositionVelocity.h"
 #include "RotationVelocity.h"
 #include "Mass.h"
+#include "Health.h"
+#include "WindowEvent.h"
 
 class PlayerController : public System{
 private:

@@ -55,7 +55,7 @@ void GravitationSystem::update(float dt) {
             acceleration += force / mass.mass;
         }
 
-        velocity.x_vel += acceleration.x;
-        velocity.y_vel += acceleration.y;
+        velocity.x_vel += acceleration.x * dt * 60;
+        velocity.y_vel += acceleration.y * dt * 60;
     }
 }

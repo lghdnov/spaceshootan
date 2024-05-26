@@ -35,6 +35,10 @@ void Renderer::update(float dt) {
                 case sf::Event::Resized:
                     break;
             }
+
+            auto world_event = world->createEntity();
+            world_event->addComponent(make_shared<WindowEvent>(event));
+            world_event->addComponent(make_shared<GarbageMark>());
         }
 
 

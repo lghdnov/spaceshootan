@@ -49,6 +49,17 @@ add_executable(spaceshootan main.cpp
         rendering/Gui/ConnectionMenu.cpp
         rendering/Gui/ConnectionMenu.h
         components/RenderMethod.h
+        playerlogic/ViewController.cpp
+        playerlogic/ViewController.h
+        physics/CollisionHandler.cpp
+        physics/CollisionHandler.h
+        components/Health.h
+        physics/HealthSystem.cpp
+        physics/HealthSystem.h
+        components/ExplosionParticle.h
+        components/WindowEvent.h
+        networking/packet/Shoot.cpp
+        networking/packet/Shoot.h
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ImGui-SFML::ImGui-SFML)

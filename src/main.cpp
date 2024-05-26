@@ -8,6 +8,9 @@
 #include "networking/NetSystem.h"
 #include "level/LevelGenerator.h"
 #include "physics/GravitationSystem.h"
+#include "playerlogic/ViewController.h"
+#include "physics/CollisionHandler.h"
+#include "physics/HealthSystem.h"
 
 
 
@@ -25,15 +28,18 @@ int main(){
     log->info("Staring application...");
 
     World world;
+    world.addSystem<Renderer>();
     world.addSystem<LevelGenerator>();
     world.addSystem<PlayerController>();
     world.addSystem<GravitationSystem>();
     world.addSystem<VelocitySystem>();
-    world.addSystem<Renderer>();
+
+    world.addSystem<ViewController>();
     world.addSystem<NetSystem>();
+    world.addSystem<CollisionHandler>();
+    world.addSystem<HealthSystem>();
 
     world.addSystem<GarbageCleaner>();
-
     while (true){
         world.update();
     }

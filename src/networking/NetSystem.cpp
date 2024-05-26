@@ -18,6 +18,7 @@ void NetSystem::init(World *world) {
     world->addSystem<SetId>();
     world->addSystem<Connection>();
     world->addSystem<Position>();
+    world->addSystem<Shoot>();
 
 }
 

@@ -1,5 +1,5 @@
-#ifndef SPACESHOOTAN_POSITION_H
-#define SPACESHOOTAN_POSITION_H
+#ifndef SPACESHOOTAN_SHOOT_H
+#define SPACESHOOTAN_SHOOT_H
 
 #include "utils/impl.h"
 #include "SFML/Network/Packet.hpp"
@@ -10,25 +10,24 @@
 #include "RemotePlayer.h"
 #include "PhysicalObject.h"
 #include "PositionVelocity.h"
-#include "RotationVelocity.h"
 #include "LocalPlayer.h"
 #include "Id.h"
 #include "GraphicObject.h"
 #include "NetworkingC.h"
 #include "Mass.h"
 #include "Health.h"
+#include "WindowEvent.h"
 
-class Position : public System{
+class Shoot : public System {
 private:
     World* world = nullptr;
     logz::Logger* log = logz::LoggerBuilder::newLogger("PACK")
             ->getLogger();
 public:
-    Position();
+    Shoot();
     void init(World* world) override;
     void update(float dt) override;
 };
 
 
-
-#endif //SPACESHOOTAN_POSITION_H
+#endif //SPACESHOOTAN_SHOOT_H

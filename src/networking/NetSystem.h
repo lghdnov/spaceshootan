@@ -8,6 +8,7 @@
 #include "packet/SetId.h"
 #include "NetworkingC.h"
 #include "packet/Position.h"
+#include "packet/Shoot.h"
 
 class NetSystem : public System{
 private:
